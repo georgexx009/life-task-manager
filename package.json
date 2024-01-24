@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
     "build": "tsc && node -e \"require('child_process').execSync('bash ./build.sh')\"",
-    "build:client": "tsc --outDir ./dist/public",
-    "build:server": "tsc --outDir ./dist"
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
