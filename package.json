@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "watch": "tsc --watch",
+    "watch:html": "nodemon --watch src/public/**/*.html --exec './build.sh'",
+    "start:dev": "nodemon --exec 'node dist/server.js'",
+    "browser-sync": "browser-sync start --proxy 'localhost:3000' --files 'dist/**/*'",
     "build": "tsc && node -e \"require('child_process').execSync('bash ./build.sh')\"",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "dev:concurrent": "concurrently \"npm:watch\" \"npm:watch:html\" \"npm:start:dev\" \"npm:browser-sync\""
   },
   "keywords": [],
   "author": "",
@@ -16,7 +21,19 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.5",
+    "browser-sync": "^3.0.2",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "dist"
+    ],
+    "ignore": [
+      "src/tests"
+    ],
+    "ext": "js,html"
   }
 }
