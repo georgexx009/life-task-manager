@@ -8,9 +8,9 @@
     "watch:html": "nodemon --watch src/public/**/*.html --exec './build.sh'",
     "start:dev": "nodemon --exec 'node dist/server.js'",
     "browser-sync": "browser-sync start --proxy 'localhost:3000' --files 'dist/**/*'",
+    "dev": "concurrently \"npm run watch\" \"npm run watch:html\" \"sleep 1 && npm run start:dev\" \"sleep 2 && npm run browser-sync\"",
     "build": "tsc && node -e \"require('child_process').execSync('bash ./build.sh')\"",
-    "start": "node dist/server.js",
-    "dev:concurrent": "concurrently \"npm:watch\" \"npm:watch:html\" \"npm:start:dev\" \"npm:browser-sync\""
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
