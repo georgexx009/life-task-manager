@@ -1,39 +1,19 @@
 {
-  "name": "life-task-manager",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "coffee-tracker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "watch:ts": "tsc --watch",
-    "watch:html": "nodemon --watch src/public/**/*.html --exec './build.sh'",
-    "start:dev": "nodemon --exec 'node dist/server.js'",
-    "browser-sync": "browser-sync start --proxy 'localhost:3000' --files 'dist/**/*'",
-    "dev": "concurrently \"npm run watch:ts\" \"npm run watch:html\" \"sleep 1 && npm run start:dev\" \"sleep 2 && npm run browser-sync\"",
-    "build": "tsc && node -e \"require('child_process').execSync('bash ./build.sh')\"",
-    "start": "node dist/server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.18.2"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
     "@types/node": "^20.11.5",
-    "browser-sync": "^3.0.2",
-    "concurrently": "^8.2.2",
-    "nodemon": "^3.0.3",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0"
   },
-  "nodemonConfig": {
-    "watch": [
-      "dist"
-    ],
-    "ignore": [
-      "src/tests"
-    ],
-    "ext": "js,html"
+  "dependencies": {
+    "csv-parser": "^3.0.0"
   }
 }
