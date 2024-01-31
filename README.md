@@ -1,5 +1,12 @@
 # Coffee Tracker
 
+## TODO
+Using a repo service (supabase) do the next with the tasks
+- get
+- create
+- delete
+- update
+
 ## Web component structure
 - base HTML with innerHTML
 - query components

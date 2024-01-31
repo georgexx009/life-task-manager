@@ -3,6 +3,12 @@ import './components/card.ts'
 import './components/examples/todo.ts'
 import './components/modal-form-recipe.ts'
 
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(import.meta.env.VITE_SUPABASE_PROJECT_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
+supabase.from('tasks').select().then(result => console.log('tasks: ', result.data))
+
+
 // # render recipes array
 const recipes = [
 { id: 1, title: 'recipe 1', description: 'description 1'},
