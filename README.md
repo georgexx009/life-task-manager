@@ -1,22 +1,38 @@
-# Coffee Tracker
+# Welcome to Remix!
 
-## TODO
-Using a repo service (supabase) do the next with the tasks
-- get
-- create
-- delete
-- update
+- [Remix Docs](https://remix.run/docs)
 
-## Web component structure
-- base HTML with innerHTML
-- query components
-- create components
-- dynamic content
-- handlers
-- styles
+## Development
 
-## How can I improve the dirty MVP?
-- DONE remove shadown dom
-- use the same pattern for each web component
-  - move selectors to the beginning of the method
-- generic styles in the root
+From your terminal:
+
+```sh
+npm run dev
+```
+
+This starts your app in development mode, rebuilding assets on file changes.
+
+## Deployment
+
+First, build your app for production:
+
+```sh
+npm run build
+```
+
+Then run the app in production mode:
+
+```sh
+npm start
+```
+
+Now you'll need to pick a host to deploy it to.
+
+### DIY
+
+If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
+
+Make sure to deploy the output of `remix build`
+
+- `build/`
+- `public/build/`
