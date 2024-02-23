@@ -27,7 +27,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Theme>
+        <Theme appearance="dark">
           <Outlet />
           <ScrollRestoration />
           <Scripts />
