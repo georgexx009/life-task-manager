@@ -1,0 +1,14 @@
+.page-container {
+  display: flex;
+  justify-content: center;
+}
+
+.page-container .content {
+  width: 100%;
+  max-width: 600px;
+}
+
+.tasks-list > * {
+  margin-bottom: 12px;
+}
+
