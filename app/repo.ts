@@ -29,3 +29,18 @@ export const getTasks = async (): Promise<ITask[]> => {
     }
   })
 }
+
+export const createTask = async (task: Omit<ITask, 'id'>): Promise<boolean> => {
+  const taskMapped = {
+    name: task.name,
+    list_id: task.listId,
+    range_time_to_do: task.rangeTimeToDo,
+    repeat_monthly: task.repeatMonthly
+  }
+  const { error } = await supabase.from('tasks').insert(taskMapped)
+  if (error) {
+    console.log('error', error)
+    return false
+  }
+  return true
+}
