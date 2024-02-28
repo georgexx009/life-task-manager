@@ -1,0 +1,14 @@
+{
+  "lists": [
+    {
+      "id": 1,
+      "label": "Running out of",
+      "name": "running-out-of"
+    },
+    {
+      "id": 2,
+      "label": "Payment",
+      "name": "payment"
+    }
+  ]
+}

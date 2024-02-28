@@ -63,7 +63,7 @@ Lists names are static, no CRUD for lists. Tasks have CRUD operations.
 ---
 
 # Technical details
-- one endpoint to return all the data
+- supabase would be the DB server
 
 ## Data schema
 list
@@ -74,8 +74,6 @@ task
 - list id owner
 - range time to do task
 - repeat montly (which day)
-
-*In first steps using a csv, replace the list id owner can be the name from the list with -*
 
 ## UI
 - starts with a list of the lists
