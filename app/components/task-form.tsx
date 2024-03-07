@@ -4,16 +4,23 @@ import type { ActionFunctionArgs } from "@remix-run/node";
 import { json } from '@remix-run/node'
 import { getTasks, createTask } from '~/repo'
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action = async ({ request, params }: ActionFunctionArgs) => {
+
+  if (request.method === 'DELETE') {
+    console.log('delete')
+    return null
+  }
+
   const body = await request.formData()
 
   await createTask({
     name: body.get('name')?.toString() || '',
-    listId: body.get('listId')?.toString() || '',
+    listId: params.listId!,
     repeatMonthly: '10',
     rangeTimeToDo: '10'
   })
 
+  // TODO - do we need to get again tasks?
   const tasks = await getTasks()
   return json({ tasks })
 }
@@ -32,9 +39,6 @@ export function TaskForm() {
           <Box py='5'>
             <Box py='2'>
               <TextField.Input name='name' placeholder='Name' />
-            </Box>
-            <Box py='2'>
-              <TextField.Input name='listId' placeholder='List ID' />
             </Box>
           </Box>
           <Button type='submit'>Save Task</Button>

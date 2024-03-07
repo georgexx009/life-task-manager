@@ -2,7 +2,6 @@ import type { MetaFunction, LinksFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
-import { TaskForm, action as taskFormAction } from "~/components/task-form";
 import { Lists } from "~/components/lists";
 import { BasicLayout } from "~/components/basic-layout";
 import { getLists } from "~/repo";
@@ -20,8 +19,6 @@ export const loader = async () => {
   return json({ lists });
 };
 
-export const action = taskFormAction;
-
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesHref },
 ];
@@ -31,9 +28,6 @@ export default function Index() {
 
   return (
     <BasicLayout>
-      <div className="tasks-list-control">
-        <TaskForm />
-      </div>
       <div className="cards-list">
         <Lists lists={lists} />
       </div>

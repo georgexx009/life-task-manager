@@ -40,15 +40,27 @@ export const getTasks = async (listId?: string): Promise<Task[]> => {
 }
 
 export const createTask = async (task: Omit<Task, 'id'>): Promise<boolean> => {
+  const list = await supabase.from('lists').select().eq('name', task.listId)
+  if (!list.data) return false
+
   const taskMapped = {
     name: task.name,
-    list_id: task.listId,
+    list_id: list.data[0].id,
     range_time_to_do: task.rangeTimeToDo,
     repeat_monthly: task.repeatMonthly
   }
   const { error } = await supabase.from('tasks').insert(taskMapped)
   if (error) {
     console.log('error', error)
+    return false
+  }
+  return true
+}
+
+export const deleteTask = async (id: Task['id']): Promise<boolean> => {
+  const { error } = await supabase.from('tasks').delete().eq('id', id)    
+  if (error) {
+    console.log(error)
     return false
   }
   return true

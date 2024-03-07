@@ -12,6 +12,15 @@
   margin-bottom: 12px;
 }
 
-.tasks-list-control {
+.list-control {
   margin-bottom: 12px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-space-between {
+  justify-content: space-between;
 }
