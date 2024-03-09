@@ -1,4 +1,11 @@
-# Welcome to Remix!
+# Life Task Manager
+
+## TO DO
+- when update/create a task, close modal
+- in task list, button top right corner to go back to list
+- improve modal layout
+- loading icon
+- start planning functionality for 2 special task attributes
 
 - [Remix Docs](https://remix.run/docs)
 
