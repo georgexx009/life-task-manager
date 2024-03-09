@@ -26,7 +26,7 @@ export default function Index() {
   return (
     <BasicLayout>
       <div className="list-control">
-        <TaskForm />
+        <TaskForm isUpdate={false}/>
       </div>
       <div className="cards-list">
         <TasksList tasks={tasks} />

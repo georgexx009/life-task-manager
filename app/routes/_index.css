@@ -12,6 +12,10 @@
   margin-bottom: 12px;
 }
 
+.horizontal-items-space > * {
+  margin-right: 12px;
+}
+
 .list-control {
   margin-bottom: 12px;
 }

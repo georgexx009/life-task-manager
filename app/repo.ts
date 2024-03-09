@@ -57,6 +57,15 @@ export const createTask = async (task: Omit<Task, 'id'>): Promise<boolean> => {
   return true
 }
 
+export const updateTask = async (taskId: number, task: Partial<Task>): Promise<boolean> => {
+  const { error } = await supabase.from('tasks').update({ name: task.name }).eq('id', taskId)
+  if (error) {
+    console.log('repo error', error)
+    return false
+  }
+  return true
+}
+
 export const deleteTask = async (id: Task['id']): Promise<boolean> => {
   const { error } = await supabase.from('tasks').delete().eq('id', id)    
   if (error) {
