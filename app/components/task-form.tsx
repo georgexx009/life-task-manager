@@ -1,4 +1,4 @@
-import { Form, useFetcher } from "@remix-run/react";
+import { Form, useFetcher, useNavigation } from "@remix-run/react";
 import {
   Box,
   Button,
@@ -12,6 +12,8 @@ import { json } from "@remix-run/node";
 import { getTasks, createTask } from "~/repo";
 import { Pencil2Icon } from "@radix-ui/react-icons";
 import { Task } from "~/types";
+import { Loader } from "./loader";
+import { ReactNode, useEffect, useRef } from "react";
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
   const body = await request.formData();
@@ -47,60 +49,81 @@ export function TaskForm(props: TaskFormProps = { isUpdate: false }) {
 }
 
 function CreateTaskForm() {
+  const navigation = useNavigation();
+
   return (
-    <Dialog.Root>
-      <Dialog.Trigger>
-        <Button>New Task</Button>
-      </Dialog.Trigger>
-
-      <Dialog.Content>
-        <Heading size="6">Task Form</Heading>
-
-        <Form method="post">
-          <Box py="5">
-            <Box py="2">
-              <TextField.Input name="name" placeholder="Name" />
-            </Box>
+    <BaseForm title="Create Task" loading={navigation.state !== "idle"}>
+      <Form method="post">
+        <Box py="5">
+          <Box py="2">
+            <TextField.Input name="name" placeholder="Name" />
           </Box>
-          <Button type="submit">Save Task</Button>
-        </Form>
-
-        <Dialog.Close>
-          <Button>Close</Button>
-        </Dialog.Close>
-      </Dialog.Content>
-    </Dialog.Root>
+        </Box>
+        <Button type="submit">Save Task</Button>
+      </Form>
+    </BaseForm>
   );
 }
 
 function UpdateTaskForm({ task }: { task: Task }) {
-  const fetcher = useFetcher()
+  const fetcher = useFetcher();
+
+  return (
+    <BaseForm title="Update Task" loading={fetcher.state !== "idle"} isUpdate>
+      <fetcher.Form method="put" action={`/api/tasks/${task.id}`}>
+        <Box py="5">
+          <Box py="2">
+            <TextField.Input
+              name="name"
+              placeholder="Name"
+              defaultValue={task.name}
+            />
+          </Box>
+        </Box>
+        <Button type="submit">Save Task</Button>
+      </fetcher.Form>
+    </BaseForm>
+  );
+}
+
+function BaseForm({
+  title,
+  children,
+  loading,
+  isUpdate = false,
+}: {
+  title: string;
+  children: ReactNode;
+  loading: boolean;
+  isUpdate?: boolean;
+}) {
+  const closeRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!loading) {
+      closeRef.current?.click();
+    }
+  }, [loading]);
 
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <IconButton>
-          <Pencil2Icon />
-        </IconButton>
+        {isUpdate ? (
+          <IconButton>
+            <Pencil2Icon />
+          </IconButton>
+        ) : (
+          <Button>New Task</Button>
+        )}
       </Dialog.Trigger>
 
       <Dialog.Content>
-        <Heading size="6">Task Form</Heading>
+        <Heading size="6">{title}</Heading>
+        <p>{loading && <Loader />}</p>
 
-        <fetcher.Form method="put" action={`/api/tasks/${task.id}`}>
-          <Box py="5">
-            <Box py="2">
-              <TextField.Input
-                name="name"
-                placeholder="Name"
-                defaultValue={task.name}
-              />
-            </Box>
-          </Box>
-          <Button type="submit">Save Task</Button>
-        </fetcher.Form>
+        {children}
 
-        <Dialog.Close>
+        <Dialog.Close ref={closeRef}>
           <Button>Close</Button>
         </Dialog.Close>
       </Dialog.Content>
