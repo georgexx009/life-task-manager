@@ -10,8 +10,9 @@ import {
 } from "@remix-run/react";
 
 // testing to see if worksk
-import '@radix-ui/themes/styles.css';
-import { Theme } from '@radix-ui/themes';
+import "@radix-ui/themes/styles.css";
+import "./theme-config.css";
+import { Theme } from "@radix-ui/themes";
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),

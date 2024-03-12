@@ -1,3 +1,19 @@
+@import url('non.geist');
+
+body {
+  font-family: 'Geist Variable';
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button:hover {
+  background-color: #3C6E71; 
+  cursor: pointer;
+}
+
 .page-container {
   display: flex;
   justify-content: center;
@@ -6,6 +22,7 @@
 .page-container .content {
   width: 100%;
   max-width: 600px;
+  padding: 8px;
 }
 
 .cards-list > * {
@@ -17,6 +34,9 @@
 }
 
 .list-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 12px;
 }
 

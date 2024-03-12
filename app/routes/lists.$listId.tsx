@@ -1,6 +1,6 @@
 import type { LoaderFunctionArgs, LinksFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, Link } from "@remix-run/react";
 
 import { getTasks } from "~/repo";
 import { TasksList } from "~/components/tasks-list";
@@ -26,8 +26,12 @@ export default function Index() {
   return (
     <BasicLayout>
       <div className="list-control">
-        <TaskForm isUpdate={false}/>
+        <Link to="/">
+          Back
+        </Link>
+        <TaskForm isUpdate={false} />
       </div>
+
       <div className="cards-list">
         <TasksList tasks={tasks} />
       </div>

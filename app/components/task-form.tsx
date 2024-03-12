@@ -59,7 +59,7 @@ function CreateTaskForm() {
             <TextField.Input name="name" placeholder="Name" />
           </Box>
         </Box>
-        <Button type="submit">Save Task</Button>
+        <FormControls />
       </Form>
     </BaseForm>
   );
@@ -80,7 +80,7 @@ function UpdateTaskForm({ task }: { task: Task }) {
             />
           </Box>
         </Box>
-        <Button type="submit">Save Task</Button>
+        <FormControls/>
       </fetcher.Form>
     </BaseForm>
   );
@@ -124,9 +124,20 @@ function BaseForm({
         {children}
 
         <Dialog.Close ref={closeRef}>
-          <Button>Close</Button>
+          <Button style={{ display: "none" }}>Close</Button>
         </Dialog.Close>
       </Dialog.Content>
     </Dialog.Root>
+  );
+}
+
+function FormControls() {
+  return (
+    <div className="list-control">
+      <Dialog.Close>
+        <Button size="4">Close</Button>
+      </Dialog.Close>
+      <Button type="submit">Save Task</Button>
+    </div>
   );
 }
