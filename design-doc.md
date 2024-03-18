@@ -90,3 +90,10 @@ task
 ### Server
 Two layers, controller+service and repo (persistance layer)
 
+### Task - range of time to do a task
+- the property should be only a day, time is not required
+- should it be Date or string?
+    - con string - retrieve task within a day can be hard
+    - i could retrieve all in the server side, transform the string to
+    Date and check if it's between
+
