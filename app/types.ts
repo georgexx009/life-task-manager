@@ -10,4 +10,13 @@ export interface Task {
   listId: string
   rangeTimeToDo: string
   repeatMonthly: string
+  start?: TaskDate
+  end?: TaskDate
 }
+
+export interface TaskDate {
+  day: string;
+  month: string;
+  year: string;
+}
+

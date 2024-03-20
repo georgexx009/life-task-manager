@@ -3,6 +3,7 @@ import { List, Task } from "./types";
 
 import mockTasks from '../mock-data/tasks.json'
 import mockLists from '../mock-data/lists.json'
+import { newTaskDate } from "./date";
 const isMock = () => process.env.ENV === ' local'
 
 const supabase = createClient(process.env.SUPABASE_PROJECT_URL!, process.env.SUPABASE_ANON_KEY!);
@@ -34,7 +35,9 @@ export const getTasks = async (listId?: string): Promise<Task[]> => {
       name: task.name,
       listId: task.list_id,
       rangeTimeToDo: task.range_time_to_do,
-      repeatMonthly: task.repeat_monthly
+      repeatMonthly: task.repeat_monthly,
+      start: task.start && newTaskDate(task.start),
+      end: task.end && newTaskDate(task.end)
     }
   })
 }

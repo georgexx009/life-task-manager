@@ -8,6 +8,8 @@ import { BasicLayout } from "~/components/basic-layout";
 import { TaskForm, action as taskFormAction } from "~/components/task-form";
 
 import stylesHref from "./_index.css";
+import { Switch } from "@radix-ui/themes";
+import { useState } from "react";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesHref },
@@ -22,6 +24,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
 export default function Index() {
   const { tasks } = useLoaderData<typeof loader>();
+  const [active, setActive] = useState(false)
 
   return (
     <BasicLayout>
@@ -29,11 +32,15 @@ export default function Index() {
         <Link to="/">
           Back
         </Link>
+        <div className="list-control">
+          Active:
+          <Switch checked={active} onCheckedChange={val => setActive(val)} /> 
+        </div>
         <TaskForm isUpdate={false} />
       </div>
 
       <div className="cards-list">
-        <TasksList tasks={tasks} />
+        <TasksList tasks={tasks} active={active} />
       </div>
     </BasicLayout>
   );
